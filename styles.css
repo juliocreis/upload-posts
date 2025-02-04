@@ -1,0 +1,92 @@
+:root {
+    --background-color: #00090E;
+    --text-color: #E1E1E1;
+    --primary-color: #81FE88;
+    --secondary-color: #888888;
+    --tag-color: #17101F;
+    --font-family: 'Prompt', sans-serif;
+    --itens-background: #171D1F;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--background-color);
+    font-family: var(--font-family);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    gap: 27px;
+    padding: 56px 0;
+    height: 100%;
+}
+
+aside {
+    background-color: var(--itens-background);
+    border-radius: 10px;
+    height: 100%;
+    text-align: center;
+    padding: 40px 16px;
+}
+
+.lista-itens {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    gap: 40px;
+    margin-top: 80px;
+    align-items: center;
+}
+
+.lista-itens li a {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    text-decoration: none;
+    color: var(--secondary-color);
+    font-size: 22px;
+}
+
+.lista-itens li:first-of-type a {
+    color: var(--primary-color);
+}
+
+.link-destaque {
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+    padding: 12px 30px;
+}
+
+main {
+    background-color: var(--itens-background);
+    border-radius: 8px;
+    padding: 32px;
+
+    display: flex;
+    gap: 24px;
+}
+
+h2 {
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 40px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+form div label {
+    font-size: 18px;
+    font-weight: 400;
+    display: block;
+    margin-bottom: 8px;
+}
