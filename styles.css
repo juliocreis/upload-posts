@@ -72,6 +72,59 @@ main {
     gap: 24px;
 }
 
+.container-image {
+    height: 368px;
+    padding: 24px 16px;
+    background-color: var(--secondary-color);
+    border-radius: 8px;
+}
+
+.main-image {
+    border-radius: 8px;
+    height: 100%;
+    object-fit: cover;
+}
+
+.container-upload-image button {
+    width: 100%;
+    border-radius: 8px;
+    background-color: var(--itens-background);
+    margin: 16px 0 8px 0;
+    border: 1px solid var(--secondary-color);
+    color: var(--secondary-color);
+    text-align: center;
+    padding: 12px;
+    font-size: 18px;
+    font-weight: 600;
+    font-family: var(--font-family);
+    position: relative;
+}
+
+.container-upload-image button::after {
+    position: absolute;
+    content: "";
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    background-image: url(./img/upload.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 8px;
+}
+
+.container-image-nome {
+    display: flex;
+    gap: 8px;
+    color: var(--secondary-color);
+    font-size: 15px;
+}
+
+.container-descricao {
+    width: 422px;
+}
+
 h2 {
     font-size: 26px;
     font-weight: 600;
@@ -89,4 +142,97 @@ form div label {
     font-weight: 400;
     display: block;
     margin-bottom: 8px;
+}
+
+form div input, textarea {
+    border-radius: 4px;
+    width: 100%;
+    padding: 8px 16px;
+    background-color: var(--secondary-color);
+    border: none;
+    line-height: 22.5px;
+    font-family: var(--font-family);
+}
+
+form div input {
+    height: 39px;
+}
+
+textarea {
+    height: 161px;
+}
+
+.lista-tags {
+    display: flex;
+}
+
+.lista-tags li {
+    background-color: var(--secondary-color);
+    list-style-type: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    display: flex;
+    gap: 10px;
+}
+
+.lista-tags li p {
+    color: var(--itens-background);
+}
+
+.container-botoes {
+    display: flex;
+    gap: 24px;
+    justify-content: space-between;
+}
+
+.container-botoes button {
+    width: 199px;
+    padding: 12px 32px 12px 12px;
+    border-radius: 8px;
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 18px;
+    text-align: center;
+}
+
+.botao-descartar {
+    border: 1px solid var(--primary-color);
+    background-color: var(--itens-background);
+    color: var(--primary-color);
+    position: relative;
+}
+
+.botao-descartar::after {
+    content: "";
+    background-image: url(./img/trash.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 8px;
+}
+
+.botao-publicar {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    border: none;
+    position: relative;
+}
+
+.botao-publicar::after {
+    content: "";
+    background-image: url(./img/arrow_forward2.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 8px;
 }
