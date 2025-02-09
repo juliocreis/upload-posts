@@ -23,13 +23,13 @@ body {
     align-items: start;
     gap: 27px;
     padding: 56px 0;
-    height: 100%;
+    height: 100vh;
 }
 
 aside {
     background-color: var(--itens-background);
     border-radius: 10px;
-    height: 100%;
+    height: 100vh;
     text-align: center;
     padding: 40px 16px;
 }
