@@ -45,9 +45,17 @@ inputTags.addEventListener('keypress', (evento) => {
         const tagTexto = inputTags.value.trim();
         if (tagTexto !== '') {
             const tagNova = document.createElement('li');
-            tagNova.innerHTML = `<p>${tagTexto}</p> <img src="./img/close-black.svg class="remove-tag"`;
+            tagNova.innerHTML = `<p>${tagTexto}</p> <img src="./img/close-black.svg" class="remove-tag">`;
             listaTags.appendChild(tagNova);
             inputTags.value = '';
         }
     }
-})
+});
+
+listaTags.addEventListener('click', (evento) => {
+    if(evento.target.classList.contains('remove-tag')) {
+        const tagParaRemover = evento.target.parentElement;
+        listaTags.removeChild(tagParaRemover);
+    }
+});
+
