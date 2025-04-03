@@ -1,64 +1,67 @@
-const uploadBotao = document.getElementById('upload-btn');
-const inputUpload = document.getElementById('image-upload');
-const imagemPrincipal = document.querySelector('.main-image');
-const imagemNome = document.querySelector('.container-image-nome p'); // Corrigido
+// Resgatando os elementos do DOM e armazenando nas variáveis 
+const uploadBotao = document.getElementById('upload-btn'); // Botão de carregar imagem
+const inputUpload = document.getElementById('image-upload'); // Input oculto que realiza o upload da imagem
+const imagemPrincipal = document.querySelector('.main-image'); // Imagem que foi carregada
+const imagemNome = document.querySelector('.container-image-nome p'); // Nome da imagem
 
-uploadBotao.addEventListener('click', () => {
+uploadBotao.addEventListener('click', () => { // Quando o botão de carregar imagem for clicado, ele dispara um clique no input do arquivo que está oculto para abrir a janela de seleção do arquivo
     inputUpload.click();
 });
 
 function lerConteudoDoArquivo(arquivo) {
     return new Promise((resolve, reject) => {
-        if (!arquivo.type.startsWith('image/')) {
-            return reject('O arquivo selecionado não é uma imagem.');
+        if (!arquivo.type.startsWith('image/')) { // Se o tipo do arquivo não começar com 'image/'
+            return reject('O arquivo selecionado não é uma imagem.'); // Rejeita o arquivo
         }
 
-        const leitor = new FileReader();
+        const leitor = new FileReader(); // Cria um FileReader que é um leitor de arquivos. FileReader é um objeto JavaScript que permite ler o conteúdo do arquivo e convertê-lo para diferentes formatos
 
-        leitor.onload = () => resolve({ url: leitor.result, nome: arquivo.name });
-        leitor.onerror = () => reject(`Erro na leitura do arquivo ${arquivo.name}`);
+        leitor.onload = () => resolve({ url: leitor.result, nome: arquivo.name }); // Quando a leitura do arquivo termina com sucesso (onload), a Promise é resolvida e retorna a url (conteúdo do arquivo como uam URL Base64) e o nome do arquivo.
+        leitor.onerror = () => reject(`Erro na leitura do arquivo ${arquivo.name}`); // Se houver erro na leitura do arquivo a Promise é rejeitada informando que houve um erro
 
-        leitor.readAsDataURL(arquivo);
+        leitor.readAsDataURL(arquivo); // Lê o conteúdo do arquivo e o converte para uma URL no formato Base64, armazenando-a em leitor.result. O evento onload só será disparado após a execução deste comando.
     });
 }
 
-inputUpload.addEventListener('change', async (evento) => {
-    const arquivo = evento.target.files[0];
+inputUpload.addEventListener('change', async (evento) => { // Quando um arquivo é selecionado pelo usuário, este evento assíncrono é acionado.
+    const arquivo = evento.target.files[0]; // Armazena o primeiro arquivo que foi feito upload
 
-    if (arquivo) {
-        try {
-            const conteudoArquivo = await lerConteudoDoArquivo(arquivo);
-            imagemPrincipal.src = conteudoArquivo.url;
-            imagemNome.textContent = conteudoArquivo.nome;
-        } catch (erro) {
-            console.error('Houve erro ao carregar o arquivo:', erro);
+    if (arquivo) { // Se o arquivo existir 
+        try { // Tentar
+            const conteudoArquivo = await lerConteudoDoArquivo(arquivo); // Esperar realizar a leitura do conteúdo do arquivo com await e armazenar o resultado da leitura na constante conteudoArquivo
+            imagemPrincipal.src = conteudoArquivo.url; // O Source da imagem que irá aparecer será a url da leitura do arquivo. Esta url só será possível ser lida devido ao comando readAsDataURL que converte a URL para o formato Base64
+            imagemNome.textContent = conteudoArquivo.nome; // Nome da imagem que irá aparecer abaixo dela na página
+        } catch (erro) { // Caso haja algum erro no arquivo
+            console.error('Houve erro ao carregar o arquivo:', erro); // Mensagem de erro
         }
     }
 });
 
-const inputTags = document.getElementById('categoria');
-const listaTags = document.querySelector('.lista-tags')
-const tagsDisponiveis = ['Front-end', 'Programação', 'Back-end', 'Full-Stack', 'DevOps', 'UX-UI', 'Data Science'];
 
-inputTags.addEventListener('keypress', (evento) => {
-    if(evento.key === 'Enter') {
-        evento.preventDefault()
-        const tagTexto = inputTags.value.trim();
-        if (tagTexto !== '') {
-            const tagNova = document.createElement('li');
-            tagNova.innerHTML = `<p>${tagTexto}</p> <img src="./img/close-black.svg" class="remove-tag">`;
-            listaTags.appendChild(tagNova);
-            inputTags.value = '';
-        } else {
+// Armazenam os elementos das tags
+const inputTags = document.getElementById('categoria'); 
+const listaTags = document.querySelector('.lista-tags')
+const tagsDisponiveis = ['Front-end', 'Programação', 'Back-end', 'Full-Stack', 'DevOps', 'UX-UI', 'Data Science']; // Simula um banco de dados contendo as tags disponíveis para serem adicionadas
+
+inputTags.addEventListener('keypress', (evento) => { // Evento para quando as tags forem adicionadas pressionando uma tecla
+    if(evento.key === 'Enter') { // Se a tecla Enter for pressionada
+        evento.preventDefault() // Evita recarregar a página
+        const tagTexto = inputTags.value.trim(); // Armazena o nome da tag que foi adicionada e remove os espaços em branco com o comando trim()
+        if (tagTexto !== '') { // Verifica se a tag não é '', se não for, executa o bloco de código
+            const tagNova = document.createElement('li'); // Cria um novo item da lista de tags
+            tagNova.innerHTML = `<p>${tagTexto}</p> <img src="./img/close-black.svg" class="remove-tag">`; // Define o conteúdo do item da lista, adicionando o texto da tag e um botão para removê-la.
+            listaTags.appendChild(tagNova); // O novo item da lista de tags é adicionado dentro do container de lista
+            inputTags.value = ''; // Após as ações, o campo de texto fica vazio novamente
+        } else { // Se a tag for vazia ela se torna inválida
             alert('Tag inválida!');
         }
     }
 });
 
-listaTags.addEventListener('click', (evento) => {
-    if(evento.target.classList.contains('remove-tag')) {
-        const tagParaRemover = evento.target.parentElement;
-        listaTags.removeChild(tagParaRemover);
+listaTags.addEventListener('click', (evento) => { // Adiciona um evento de clique na lista das tags
+    if(evento.target.classList.contains('remove-tag')) { // Verifica a lista de classes do elemento exato que foi clicado se há a classe remove-tag
+        const tagParaRemover = evento.target.parentElement; // Armazena a tag que irá ser removida (a tag filha da lista de classes)
+        listaTags.removeChild(tagParaRemover); // Remove o item da lista
     }
 });
 
@@ -68,7 +71,7 @@ listaTags.addEventListener('click', (evento) => {
 async function verificarTagDisponivel(tagTexto) {
     return new Promise((resolve) => {
         setTimeout(() => {
-            resolve(tagsDisponiveis.includes(tagTexto));
+            resolve(tagsDisponiveis.includes(tagTexto)); // Simula um tempo de espera antes de verificar se a tag existe na lista de tags disponíveis
         }, 1000);
     });
 }
