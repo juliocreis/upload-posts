@@ -1,25 +1,27 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<!DOCTYPE html> <!-- Indica a versão do HTML -->
+<html lang="pt-br"> <!-- Indica a linguagem da página -->
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+<head> <!-- Tag que contem as meta informações sobre a página. Meta informações são informações que complementam os dados de uma página web, importantes para o SEO -->
+    <meta charset="UTF-8"> <!-- Padrão de codificação de caracteres -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Define a escala para se ajustar a dispositivos móveis -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- Faz a conexão com as fontes do Google Fonts que foram utilizadas neste projeto -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <title>CodeConnect</title>
+    <title>CodeConnect</title> <!-- Título da página que aparece na aba do navegador -->
 </head>
 
-<body>
-    <aside>
-        <img src="./img/Logo.svg" alt="Logo do CodeConnect">
-        <nav>
-            <ul class="lista-itens">
-                <li>
-                    <a href="#" class="link-destaque" >Publicar</a>
+<body> <!-- Corpo da página -->
+    <aside> <!-- O Aside é a parte do conteúdo da página que se concentra ao lado do conteúdo principal, menu lateral -->
+        <img src="./img/Logo.svg" alt="Logo do CodeConnect"> <!-- Tag que indica uma imagem -->
+        <nav> <!-- É uma tag semântica que indica o menu de navegação da página -->
+            <ul class="lista-itens"> <!-- Lista que exibe os links de navegação do menu lateral -->
+                <li> <!-- Item da lista -->
+                    <a href="#" class="link-destaque" >
+                        Publicar
+                    </a> <!-- Tag âncora, direciona para alguma parte da página, neste caso ela não tem função ainda -->
                 </li>
                 <li>
                     <a href="#">
@@ -49,37 +51,37 @@
         </nav>
     </aside>
 
-    <main>
-        <div class="container-upload-image">
-            <div class="container-image">
-                <img src="./img/imagem1.png" alt="" class="main-image">
+    <main> <!-- Tag semântica que indica o conteúdo principal de uma página -->
+        <div class="container-upload-image"> <!-- Indica o container que irá envolver a imagem e suas ações -->
+            <div class="container-image"> <!-- Container que irá envolver a imagem -->
+                <img src="./img/imagem1.png" alt="" class="main-image"> 
             </div>
-            <button id="upload-btn" class="upload-btn">Carregar imagem</button>
-            <input type="file" id="image-upload" accept="image/*" style="display: none">
-            <div class="container-image-nome">
+            <button id="upload-btn" class="upload-btn">Carregar imagem</button> <!-- Botão para o carregamento da imagem -->
+            <input type="file" id="image-upload" accept="image/*" style="display: none"> <!-- Input oculto para realizar o carregamento da imagem na página -->
+            <div class="container-image-nome"> <!-- Container para o nome da imagem que carregou e o ícone de excluir -->
                 <p>image.projeto.png</p>
                 <img src="./img/close.svg" alt="">
             </div>
         </div>
-        <div class="container-descricao">
-            <h2>Novo projeto</h2>
-            <form>
-                <div>
+        <div class="container-descricao"> <!-- Container que envolve a área de página de descrição da imagem -->
+            <h2>Novo projeto</h2> <!-- Título -->
+            <form> <!-- Tag que indica uma formulário -->
+                <div> <!-- Container que envolve o campo de texto e o nome desse campo de texto -->
                     <label for="nome">Nome do projeto</label>
                     <input type="text" id="nome" name="nome">
                 </div>
                 <div>
                     <label for="descricao">Descrição</label>
-                    <textarea name="descricao" id="descricao"></textarea>
+                    <textarea name="descricao" id="descricao"></textarea> <!-- Tag que indica uma grande área de texto, maior que apenas input type="text" -->
                 </div>
                 <div>
                     <label for="categoria">Tags</label>
                     <input type="text" id="categoria" name="categoria">
                 </div>
-                <ul class="lista-tags">
+                <ul class="lista-tags"> <!-- Lista das tags que irão ser adicionadas no formulário -->
                 
                 </ul>
-                <div class="container-botoes">
+                <div class="container-botoes"> <!-- Container que envolve os botões -->
                     <button class="botao-descartar">Descartar</button>
                     <button class="botao-publicar">Publicar</button>
                 </div>
@@ -87,7 +89,7 @@
         </div>
     </main>
 
-    <script src="scripts.js"></script>
+    <script src="scripts.js"></script> <!-- Tag que faz a conexão com o arquivo JavaScript para adicionar interatividade para a página -->
 </body>
 
 </html>
