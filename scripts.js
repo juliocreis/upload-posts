@@ -38,6 +38,7 @@ inputUpload.addEventListener('change', async (evento) => {
 
 const inputTags = document.getElementById('categoria');
 const listaTags = document.querySelector('.lista-tags')
+const tagsDisponiveis = ['Front-end', 'Programação', 'Back-end', 'Full-Stack', 'DevOps', 'UX-UI', 'Data Science'];
 
 inputTags.addEventListener('keypress', (evento) => {
     if(evento.key === 'Enter') {
@@ -48,6 +49,8 @@ inputTags.addEventListener('keypress', (evento) => {
             tagNova.innerHTML = `<p>${tagTexto}</p> <img src="./img/close-black.svg" class="remove-tag">`;
             listaTags.appendChild(tagNova);
             inputTags.value = '';
+        } else {
+            alert('Tag inválida!');
         }
     }
 });
@@ -59,3 +62,13 @@ listaTags.addEventListener('click', (evento) => {
     }
 });
 
+/* Simulando requisição assíncrona */
+
+
+async function verificarTagDisponivel(tagTexto) {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(tagsDisponiveis.includes(tagTexto));
+        }, 1000);
+    });
+}
