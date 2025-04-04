@@ -1,3 +1,4 @@
+/* Define as variáveis CSS */
 :root {
     --background-color: #00090E;
     --text-color: #E1E1E1;
@@ -8,12 +9,14 @@
     --itens-background: #171D1F;
 }
 
+/* Aplica estilos a todos os elementos CSS */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+/* Aplica estilos ao container do corpo da página */
 body {
     background-color: var(--background-color);
     font-family: var(--font-family);
@@ -26,6 +29,7 @@ body {
     height: 100%;
 }
 
+/* Estiliza o menu lateral da página */
 aside {
     background-color: var(--itens-background);
     border-radius: 10px;
@@ -34,6 +38,7 @@ aside {
     padding: 40px 16px;
 }
 
+/* Estiliza e posiciona a lista de itens do menu lateral */
 .lista-itens {
     display: flex;
     flex-direction: column;
@@ -43,6 +48,7 @@ aside {
     align-items: center;
 }
 
+/* Estiliza e posiciona o conteúdo dos itens da lista do menu lateral */
 .lista-itens li a {
     display: flex;
     flex-direction: column;
@@ -53,16 +59,19 @@ aside {
     font-size: 22px;
 }
 
+/* Indica a estilização do primeiro filho do tipo <a> que estiver dentro da <li> */
 .lista-itens li:first-of-type a {
     color: var(--primary-color);
 }
 
+/* Estilização da classe que está presente no link de destaque do menu lateral */
 .link-destaque {
     border: 1px solid var(--primary-color);
     border-radius: 8px;
     padding: 12px 30px;
 }
 
+/* Estilização do container que envolve o conteúdo principal da página */
 main {
     background-color: var(--itens-background);
     border-radius: 8px;
@@ -72,6 +81,7 @@ main {
     gap: 24px;
 }
 
+/* Estilização do container que envolve a imagem e o botão */
 .container-image {
     height: 368px;
     padding: 24px 16px;
@@ -79,12 +89,14 @@ main {
     border-radius: 8px;
 }
 
+/* Estilização do container que envolve apenas a imagem */
 .main-image {
     border-radius: 8px;
     height: 100%;
     object-fit: cover;
 }
 
+/* Aplica estilos ao botão de upload de imagem */
 .container-upload-image button {
     width: 100%;
     border-radius: 8px;
@@ -97,23 +109,34 @@ main {
     font-size: 18px;
     font-weight: 600;
     font-family: var(--font-family);
-    position: relative;
+    /* O position: relative é utilizado para posicionar o ícone presente ao lado do nome "Carregar imagem" */
+    position: relative; 
 }
 
+
 .container-upload-image button::after {
+    /* O position: absolute posiciona o elemento em relação ao seu elemento pai, neste caso o botão container-upload-image */
     position: absolute;
+    /* O content está vazio para posteriormente adicionar uma imagem */
     content: "";
+
+    /* Dimensões do ícone */
     width: 15px;
     height: 15px;
-    display: inline-block;
+
+    /* Adicionando a imagem */
     background-image: url(./img/upload.svg);
     background-repeat: no-repeat;
     background-size: contain;
+
+    /* Posicionamento do ícone */
     top: 50%;
+    /* Posiciona o ícone no eixo Y recuando 50% */
     transform: translateY(-50%);
     margin-left: 8px;
 }
 
+/* Aplicando estilos ao nome da imagem */
 .container-image-nome {
     display: flex;
     gap: 8px;
@@ -121,6 +144,7 @@ main {
     font-size: 15px;
 }
 
+/* Largura do container de descrição da imagem */
 .container-descricao {
     width: 422px;
 }
@@ -131,12 +155,14 @@ h2 {
     margin-bottom: 40px;
 }
 
+/* Estilização do formulário */
 form {
     display: flex;
     flex-direction: column;
     gap: 24px;
 }
 
+/* Estilização do rótulo do campo de texto */
 form div label {
     font-size: 18px;
     font-weight: 400;
@@ -144,6 +170,7 @@ form div label {
     margin-bottom: 8px;
 }
 
+/* Estilização tanto do input quanto do textarea que estão dentro da div do formulário */
 form div input, textarea {
     border-radius: 4px;
     width: 100%;
@@ -166,6 +193,7 @@ textarea {
     display: flex;
 }
 
+/* Estilização dos itens da lista de tags */
 .lista-tags li {
     background-color: var(--secondary-color);
     list-style-type: none;
@@ -175,10 +203,12 @@ textarea {
     gap: 10px;
 }
 
+/* Estilização dos parágrafos que estão dentro dos itens da lista de tags */
 .lista-tags li p {
     color: var(--itens-background);
 }
 
+/* Estilização dos botões de descartar e publicar. Seguem a mesma lógica de adicionar ícone do botão de carregar imagem */
 .container-botoes {
     display: flex;
     gap: 24px;
