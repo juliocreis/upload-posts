@@ -82,7 +82,6 @@ inputTags.addEventListener('keypress', async (evento) => { // Evento para quando
                 alert('Erro ao verificar a existência da tag. Verifique o console');
             }
             
-            
         } else { // Se a tag for vazia ela se torna inválida
             alert('Tag inválida!');
         }

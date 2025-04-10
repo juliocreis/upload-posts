@@ -93,6 +93,8 @@ main {
 .main-image {
     border-radius: 8px;
     height: 100%;
+
+    /* Redimensiona a imagem sem deixar espaços em branco no container mas sem perder sua proporção */
     object-fit: cover;
 }
 
