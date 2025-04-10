@@ -8,6 +8,7 @@ uploadBotao.addEventListener('click', () => { // Quando o botão de carregar ima
     inputUpload.click();
 });
 
+// O uso da Promise neste caso é garantir que o código aguarde a leitura de forma eficiente sem bloquear a execução de outras operações
 function lerConteudoDoArquivo(arquivo) {
     return new Promise((resolve, reject) => {
         if (!arquivo.type.startsWith('image/')) { // Se o tipo do arquivo não começar com 'image/'
@@ -43,21 +44,6 @@ const inputTags = document.getElementById('categoria');
 const listaTags = document.querySelector('.lista-tags')
 const tagsDisponiveis = ['Front-end', 'Programação', 'Back-end', 'Full-Stack', 'DevOps', 'UX-UI', 'Data Science']; // Simula um banco de dados contendo as tags disponíveis para serem adicionadas
 
-inputTags.addEventListener('keypress', (evento) => { // Evento para quando as tags forem adicionadas pressionando uma tecla
-    if(evento.key === 'Enter') { // Se a tecla Enter for pressionada
-        evento.preventDefault() // Evita recarregar a página
-        const tagTexto = inputTags.value.trim(); // Armazena o nome da tag que foi adicionada e remove os espaços em branco com o comando trim()
-        if (tagTexto !== '') { // Verifica se a tag não é '', se não for, executa o bloco de código
-            const tagNova = document.createElement('li'); // Cria um novo item da lista de tags
-            tagNova.innerHTML = `<p>${tagTexto}</p> <img src="./img/close-black.svg" class="remove-tag">`; // Define o conteúdo do item da lista, adicionando o texto da tag e um botão para removê-la.
-            listaTags.appendChild(tagNova); // O novo item da lista de tags é adicionado dentro do container de lista
-            inputTags.value = ''; // Após as ações, o campo de texto fica vazio novamente
-        } else { // Se a tag for vazia ela se torna inválida
-            alert('Tag inválida!');
-        }
-    }
-});
-
 listaTags.addEventListener('click', (evento) => { // Adiciona um evento de clique na lista das tags
     if(evento.target.classList.contains('remove-tag')) { // Verifica a lista de classes do elemento exato que foi clicado se há a classe remove-tag
         const tagParaRemover = evento.target.parentElement; // Armazena a tag que irá ser removida (a tag filha da lista de classes)
@@ -75,3 +61,30 @@ async function verificarTagDisponivel(tagTexto) {
         }, 1000);
     });
 }
+
+inputTags.addEventListener('keypress', async (evento) => { // Evento para quando as tags forem adicionadas pressionando uma tecla
+    if(evento.key === 'Enter') { // Se a tecla Enter for pressionada
+        evento.preventDefault() // Evita recarregar a página
+        const tagTexto = inputTags.value.trim(); // Armazena o nome da tag que foi adicionada e remove os espaços em branco com o comando trim()
+        if (tagTexto !== '') { // Verifica se a tag não é '', se não for, executa o bloco de código
+            try {
+                const tagExiste = await verificarTagDisponivel(tagTexto);
+                if(tagExiste) {
+                    const tagNova = document.createElement('li'); // Cria um novo item da lista de tags
+                    tagNova.innerHTML = `<p>${tagTexto}</p> <img src="./img/close-black.svg" class="remove-tag">`; // Define o conteúdo do item da lista, adicionando o texto da tag e um botão para removê-la.
+                    listaTags.appendChild(tagNova); // O novo item da lista de tags é adicionado dentro do container de lista
+                    inputTags.value = ''; // Após as ações, o campo de texto fica vazio novamente
+                } else {
+                    alert('A tag não foi encontrada');
+                }
+            } catch(error) {
+                console.error('Erro ao verificar a existência da tag');
+                alert('Erro ao verificar a existência da tag. Verifique o console');
+            }
+            
+            
+        } else { // Se a tag for vazia ela se torna inválida
+            alert('Tag inválida!');
+        }
+    }
+});
