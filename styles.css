@@ -193,6 +193,8 @@ textarea {
 
 .lista-tags {
     display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
 }
 
 /* Estilização dos itens da lista de tags */
