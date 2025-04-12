@@ -63,17 +63,17 @@ async function verificarTagDisponivel(tagTexto) {
 }
 
 inputTags.addEventListener('keypress', async (evento) => { // Evento para quando as tags forem adicionadas pressionando uma tecla
-    if(evento.key === 'Enter') { // Se a tecla Enter for pressionada
-        evento.preventDefault() // Evita recarregar a página
-        const tagTexto = inputTags.value.trim(); // Armazena o nome da tag que foi adicionada e remove os espaços em branco com o comando trim()
-        if (tagTexto !== '') { // Verifica se a tag não é '', se não for, executa o bloco de código
+    if(evento.key === 'Enter') {
+        evento.preventDefault()
+        const tagTexto = inputTags.value.trim(); 
+        if (tagTexto !== '') { 
             try {
                 const tagExiste = await verificarTagDisponivel(tagTexto);
                 if(tagExiste) {
-                    const tagNova = document.createElement('li'); // Cria um novo item da lista de tags
-                    tagNova.innerHTML = `<p>${tagTexto}</p> <img src="./img/close-black.svg" class="remove-tag">`; // Define o conteúdo do item da lista, adicionando o texto da tag e um botão para removê-la.
-                    listaTags.appendChild(tagNova); // O novo item da lista de tags é adicionado dentro do container de lista
-                    inputTags.value = ''; // Após as ações, o campo de texto fica vazio novamente
+                    const tagNova = document.createElement('li'); 
+                    tagNova.innerHTML = `<p>${tagTexto}</p> <img src="./img/close-black.svg" class="remove-tag">`; 
+                    listaTags.appendChild(tagNova);
+                    inputTags.value = '';
                 } else {
                     alert('A tag não foi encontrada');
                 }
@@ -82,13 +82,27 @@ inputTags.addEventListener('keypress', async (evento) => { // Evento para quando
                 alert('Erro ao verificar a existência da tag. Verifique o console');
             }
             
-        } else { // Se a tag for vazia ela se torna inválida
+        } else {
             alert('Tag inválida!');
         }
     }
 });
 
 const botaoPublicar = document.querySelector('.botao-publicar');
+
+async function envioFormulario(nomeProjeto, descricaoProjeto, tagsProjeto) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            const deuCerto = Math.random() > 0.5;
+
+            if(deuCerto) {
+                resolve('Envio do formulário realizado com sucesso');
+            } else {
+                reject('Falha no envio do formulário');
+            }
+        }, 2000);
+    })
+}
 
 botaoPublicar.addEventListener('click', async (evento) => {
     evento.preventDefault();
@@ -97,7 +111,13 @@ botaoPublicar.addEventListener('click', async (evento) => {
     const descricaoProjeto = document.getElementById('descricao').value;
     const tagsProjeto = Array.from(listaTags.querySelectorAll('p')).map((tag) => tag.textContent);
 
-    console.log(nomeProjeto);
-    console.log(descricaoProjeto);
-    console.log(tagsProjeto);
+    try {
+        const mensagem = await envioFormulario(nomeProjeto, descricaoProjeto, tagsProjeto);
+        console.log(mensagem);
+        alert(mensagem);
+    } catch (error) {
+        console.log(error);
+        alert(error);
+    }
 });
+
