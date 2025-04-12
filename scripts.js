@@ -41,8 +41,8 @@ inputUpload.addEventListener('change', async (evento) => { // Quando um arquivo 
 
 // Armazenam os elementos das tags
 const inputTags = document.getElementById('categoria'); 
-const listaTags = document.querySelector('.lista-tags')
-const tagsDisponiveis = ['Front-end', 'Programação', 'Back-end', 'Full-Stack', 'DevOps', 'UX-UI', 'Data Science']; // Simula um banco de dados contendo as tags disponíveis para serem adicionadas
+const listaTags = document.querySelector('.lista-tags');
+const tagsDisponiveis = ['Front-end', 'Programação', 'Back-end', 'Full-Stack', 'DevOps', 'UX-UI', 'Data Science', 'IA']; // Simula um banco de dados contendo as tags disponíveis para serem adicionadas
 
 listaTags.addEventListener('click', (evento) => { // Adiciona um evento de clique na lista das tags
     if(evento.target.classList.contains('remove-tag')) { // Verifica a lista de classes do elemento exato que foi clicado se há a classe remove-tag
@@ -86,4 +86,18 @@ inputTags.addEventListener('keypress', async (evento) => { // Evento para quando
             alert('Tag inválida!');
         }
     }
+});
+
+const botaoPublicar = document.querySelector('.botao-publicar');
+
+botaoPublicar.addEventListener('click', async (evento) => {
+    evento.preventDefault();
+
+    const nomeProjeto = document.getElementById('nome').value;
+    const descricaoProjeto = document.getElementById('descricao').value;
+    const tagsProjeto = Array.from(listaTags.querySelectorAll('p')).map((tag) => tag.textContent);
+
+    console.log(nomeProjeto);
+    console.log(descricaoProjeto);
+    console.log(tagsProjeto);
 });
